@@ -1,0 +1,21 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up C compiler
+        run: sudo apt-get install build-essential
+      - name: Compile login.c
+        run: gcc -o login login.c
+      - name: Run login test
+        run: ./login
